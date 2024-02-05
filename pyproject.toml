@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "workshop-01-ao-vivo"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Sebben <felipesebben@yahoo.com.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.30.0"
+pydantic = {extras = ["email"], version = "^2.5.3"}
+pytest = "^7.4.4"
+selenium = "^4.17.2"
+taskipy = "^1.12.2"
+openpyxl = "^3.1.2"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+run = "FOR /F \"tokens=5\" %a IN ('netstat -a -n -o ^| findstr :8501') DO taskkill /F /PID %a & streamlit run src/app.py"
+run_tests = "pytest tests -v"
