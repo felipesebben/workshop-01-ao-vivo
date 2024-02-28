@@ -63,7 +63,7 @@ def test_check_streamlit_h1(driver):
     h1_element = driver.find_element(By.TAG_NAME, "h1")
 
     # Verificar se o texto do elemento <h1> é o esperado
-    expected_text = "Insira o seu excel para validação"
+    expected_text = "Validador de schema excel"
     assert h1_element.text == expected_text
 
 def test_check_usuario_pode_inserir_um_excel_e_receber_uma_mensagem(driver):
@@ -104,6 +104,9 @@ def test_check_mais_de_uma_mensagem_de_erro(driver):
     sleep(3)
     # Localizar todas as ocorrências da mensagem de erro
     error_messages = driver.find_elements(By.XPATH, "//*[contains(text(), 'Erro na validação')]")
+
+    for message in error_messages:
+        print(message.text)
 
     # Verificar se existem pelo menos duas mensagens de erro
     assert len(error_messages) == 2, f"Quantidade de mensagens de erro encontradas: {len(error_messages)}"
