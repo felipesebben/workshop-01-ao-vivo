@@ -19,7 +19,7 @@ def driver():
     process = subprocess.Popen(["streamlit", "run", "src/app.py"])
     options = Options()
     options.headless = True  # Executar em modo headless
-    driver = webdriver.chrome(options=options)
+    driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(5)
     yield driver
 

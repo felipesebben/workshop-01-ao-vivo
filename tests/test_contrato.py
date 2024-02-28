@@ -24,7 +24,7 @@ def test_vendas_com_dados_validos():
         "valor": 100.50,
         "produto": "Produto X",
         "quantidade": 3,
-        "categoria": "categoria inexistente",
+        "categoria": "categoria1",
     }
 
     
@@ -61,7 +61,7 @@ def test_vendas_com_dados_invalidos():
         "valor": -100,
         "produto": "",
         "quantidade": -1,
-        "categoria": "categoria3"
+        "categoria": "categoria inexistente"
     }
 
     with pytest.raises(ValidationError):
