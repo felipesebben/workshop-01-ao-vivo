@@ -9,11 +9,11 @@ def main():
     upload_file = ui.upload_file()
 
     if upload_file: # Só entra na condicional se o arquivo for carregado
-        df, result, error = process_excel(upload_file)
-        ui.display_results(result, error)
+        df, result, errors = process_excel(upload_file)
+        ui.display_results(result, errors)
 
-        if error:
-            ui.display_wrong_message()
+        if errors:
+            ui.display_results(result, error=errors)
             logging.error("Planilha apresentava erro de schema.")
         elif ui.display_save_button():
             ui.display_success_message()
