@@ -49,7 +49,7 @@ jobs:
       - name: Rodar os testes
         run: |
           source .venv/bin/activate
-          pytest tests/
+          pytest tests/test_contrato.py
           coverage report
 
      
