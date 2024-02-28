@@ -14,7 +14,7 @@ def main():
 
         if error:
             ui.display_wrong_message()
-            logging.error("Planilha apresentava erro de schema.")
+            logging.error("Planilha apresenta erro de schema.")
         elif ui.display_save_button():
             ui.display_success_message()
             logging.info("Planilha validada e salva no banco de dados.")
