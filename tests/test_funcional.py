@@ -18,7 +18,7 @@ def driver():
     # Iniciar o Streamlit em background
     process = subprocess.Popen(["streamlit", "run", "src/app.py"])
     options = Options()
-    options.headless = True  # Executar em modo headless
+    options.headless = False  # Executar em modo headless
     driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(5)
     yield driver
