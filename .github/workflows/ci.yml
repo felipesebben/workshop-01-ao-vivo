@@ -42,7 +42,7 @@ jobs:
       # install your root project, if required
       #----------------------------------------------
       - name: Instalar o projeto, se necessário
-        run: poetry install --no-interaction
+        run: pip install -r requirements.txt
       #----------------------------------------------
       #              run test suite
       #----------------------------------------------
