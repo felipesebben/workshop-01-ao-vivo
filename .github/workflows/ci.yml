@@ -4,15 +4,51 @@ on: pull_request
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10, 3.11, 3.12]
 
     steps:
-      - name: primeira CI
-        run: echo "Hello World"
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
 
-      - name: o que tem aqui?
-        run: echo $(ls)
-      
-      - name: qual o diretório atual?
-        run: echo $(pwd)
+      - name: Instalar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Instalar o poetry
+        uses: snok/install-poetry@v1
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      #----------------------------------------------
+      #       load cached venv if cache exists
+      #----------------------------------------------
+      - name: Rodar cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      #----------------------------------------------
+      # install dependencies if cache does not exist
+      #----------------------------------------------
+      - name: Instalar dependencias
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      #----------------------------------------------
+      # install your root project, if required
+      #----------------------------------------------
+      - name: Instalar o projeto, se necessário
+        run: poetry install --no-interaction
+      #----------------------------------------------
+      #              run test suite
+      #----------------------------------------------
+      - name: Rodar os testes
+        run: |
+          source .venv/bin/activate
+          pytest tests/
+          coverage report
 
      
