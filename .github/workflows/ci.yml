@@ -1,11 +1,11 @@
 name: ci
 
-on: pull request
+on: pull_request
 jobs:
-	test:
-		runs-on: ubuntu-latest
-		
-		steps:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: primeira CI
         run: echo "Hello World"
 
@@ -15,4 +15,4 @@ jobs:
       - name: qual o diretório atual?
         run: echo $(pwd)
 
-      
+     
