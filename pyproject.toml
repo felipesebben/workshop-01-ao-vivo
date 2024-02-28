@@ -21,5 +21,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
-run = "FOR /F \"tokens=5\" %a IN ('netstat -a -n -o ^| findstr :8501') DO taskkill /F /PID %a & streamlit run src/app.py"
+kill_port = "FOR /F \"tokens=5\" %a IN ('netstat -a -n -o ^| findstr :8501') DO taskkill /F /PID %a"
+streamlit = "streamlit run src/app.py"
+
 run_tests = "pytest tests -v"
