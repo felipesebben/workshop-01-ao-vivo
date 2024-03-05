@@ -76,8 +76,10 @@ def test_validacao_categoria():
     Utiliza-se dados válidos para todos os campos exceto para a categoria, que é inválida e definida como "categoria inexistente".
     Espera-se que a classe Vendas levante uma exceção `ValidationError` quando a categoria é inválida.
 
-    args:
-        dados = {
+    O dicionário `dados` é definido com os seguintes valores:
+    
+    ```python
+    dados = {
             "email": comprador@example.com,
             "data": datetime.now(),
             "valor": 100.50,
@@ -85,6 +87,8 @@ def test_validacao_categoria():
             quantidade: 1,
             categoria: categoria inexistente
         }
+    ```
+    
     """
     dados = {
         "email": "comprador@example.com",
@@ -92,7 +96,7 @@ def test_validacao_categoria():
         "valor": 100.50,
         "produto": "Produto Y",
         "quantidade": 1,
-        "categoria": "categoria inexistente",
+        "categoria": "categoria inexistente"
     }
 
     with pytest.raises(ValidationError):

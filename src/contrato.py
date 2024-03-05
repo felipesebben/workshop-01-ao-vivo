@@ -12,7 +12,7 @@ class Vendas(BaseModel):
     """
     Modelo de dados para as vendas.
 
-    Args:
+    Attributes:
         `email` (`str`): Email do cliente.
         `data` (`datetime`): Data da venda.
         `valor` (`float`): Valor da venda.
