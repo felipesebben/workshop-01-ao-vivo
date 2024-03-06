@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+
+import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv(".env")
@@ -14,6 +15,7 @@ POSTGRES_DB = os.getenv("POSTGRES_DB")
 # Criar a URL de conexão com o banco de dados
 DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
+
 def test_ler_dados_e_checar_schema():
     """
     Executa leitura do banco de dados. Verifica:
@@ -27,12 +29,14 @@ def test_ler_dados_e_checar_schema():
 
     # Verificar se o schema está correto
     expected_dtype = {
-        "email": "object", #`object` em Pandas equivale a `string` em SQL
+        "email": "object",  # `object` em Pandas equivale a `string` em SQL
         "data": "datetime64[ns]",
         "valor": "float64",
         "quantidade": "int64",
         "produto": "object",
-        "categoria": "object"
+        "categoria": "object",
     }
     print(df.dtypes.to_dict())
-    assert df.dtypes.to_dict() == expected_dtype, "O schema do DataFrame não corresponde ao esperado."
+    assert (
+        df.dtypes.to_dict() == expected_dtype
+    ), "O schema do DataFrame não corresponde ao esperado."
