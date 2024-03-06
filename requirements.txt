@@ -51,7 +51,6 @@ platformdirs==4.2.0
 pluggy==1.4.0
 protobuf==4.25.3
 psutil==5.9.8
-psycopg2==2.9.9
 psycopg2-binary==2.9.9
 pyarrow==15.0.0
 pycparser==2.21
