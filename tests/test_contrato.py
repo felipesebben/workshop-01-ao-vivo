@@ -1,13 +1,15 @@
-import pytest
 from datetime import datetime
-from src.contrato import Vendas
+
+import pytest
 from pydantic import ValidationError
+
+from src.contrato import Vendas
 
 
 def test_vendas_com_dados_validos():
     """
     Testa a criação de uma instância de Vendas com dados válidos.
-    
+
     Este teste verifica se a classe Vendas aceita e armazena corretamente os dados válidos passados para o construtor.
     Dados válidos incluem:
     - email correto
@@ -16,7 +18,7 @@ def test_vendas_com_dados_validos():
     - produto não vazio
     - quantidade positiva
     - categoria válida
-    O teste confirma se os valores armazenados na instância de Vendas são iguais aos valores passados para o construtor.	
+    O teste confirma se os valores armazenados na instância de Vendas são iguais aos valores passados para o construtor.
     """
     dados_validos = {
         "email": "comprador@example.com",
@@ -27,8 +29,7 @@ def test_vendas_com_dados_validos():
         "categoria": "categoria1",
     }
 
-    
-    # A sintaxe **dados_validos é uma forma de desempacotamento de dicionários em Python. 
+    # A sintaxe **dados_validos é uma forma de desempacotamento de dicionários em Python.
     # O que isso faz é passar os pares chave-valor no dicionário dados_validos como argumentos nomeados para o construtor da classe Vendas.
 
     venda = Vendas(**dados_validos)
@@ -40,12 +41,13 @@ def test_vendas_com_dados_validos():
     assert venda.quantidade == dados_validos["quantidade"]
     assert venda.categoria == dados_validos["categoria"]
 
+
 # Testes com dados inválidos
 def test_vendas_com_dados_invalidos():
     """
     Testa a criação de uma instância de Vendas com dados inválidos.
 
-    Este teste verifica se a classe Vendas levanta uma exceção `ValidationError` quando dados inválidos são passados para o construtor. 
+    Este teste verifica se a classe Vendas levanta uma exceção `ValidationError` quando dados inválidos são passados para o construtor.
     Dados inválidos incluem:
     - email inválido
     - data inválida
@@ -61,11 +63,12 @@ def test_vendas_com_dados_invalidos():
         "valor": -100,
         "produto": "",
         "quantidade": -1,
-        "categoria": "categoria inexistente"
+        "categoria": "categoria inexistente",
     }
 
     with pytest.raises(ValidationError):
         Vendas(**dados_invalidos)
+
 
 # Teste de validação de categoria
 def test_validacao_categoria():
@@ -77,7 +80,7 @@ def test_validacao_categoria():
     Espera-se que a classe Vendas levante uma exceção `ValidationError` quando a categoria é inválida.
 
     O dicionário `dados` é definido com os seguintes valores:
-    
+
     ```python
     dados = {
             "email": comprador@example.com,
@@ -88,7 +91,7 @@ def test_validacao_categoria():
             categoria: categoria inexistente
         }
     ```
-    
+
     """
     dados = {
         "email": "comprador@example.com",
@@ -96,7 +99,7 @@ def test_validacao_categoria():
         "valor": 100.50,
         "produto": "Produto Y",
         "quantidade": 1,
-        "categoria": "categoria inexistente"
+        "categoria": "categoria inexistente",
     }
 
     with pytest.raises(ValidationError):
