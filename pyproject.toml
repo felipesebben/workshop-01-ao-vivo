@@ -20,6 +20,8 @@ mkdocs-material = "^9.5.11"
 sqlalchemy = "^2.0.28"
 psycopg2 = "^2.9.9"
 psycopg2-binary = "^2.9.9"
+isort = "^5.13.2"
+black = "^24.2.0"
 
 
 [build-system]
@@ -29,5 +31,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.taskipy.tasks]
 kill_port = "FOR /F \"tokens=5\" %a IN ('netstat -a -n -o ^| findstr :8501') DO taskkill /F /PID %a"
 streamlit = "streamlit run src/app.py"
+format = "isort . && black ."
 
 run_tests = "pytest tests -v"
